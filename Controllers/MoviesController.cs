@@ -27,23 +27,5 @@ namespace AspGodPractice.Controllers
             var moviesViewModel = _movieService.GetAllMovies();
             return View(moviesViewModel);
         }
-
-        // GET: Movies/Random
-        public ActionResult Random(int id = 1)
-        {
-            var viewModel = _movieService.GetRentalData(id);
-            return View(viewModel);
-        }
-
-        public ActionResult Edit(int id)
-        {
-            return Content("id=" + id);
-        }
-
-        [Route ("movies/released/{year}/{month:regex(\\d{2}):range(1, 12)}")]
-        public ActionResult ReleasedByDate ( int year, int month)
-        {
-            return Content(year + "/" + month);
-        }
     }
 }
