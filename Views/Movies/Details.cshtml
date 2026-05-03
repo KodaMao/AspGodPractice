@@ -1,0 +1,85 @@
+﻿@model AspGodPractice.ViewModels.Movies.MovieDetailsViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+    <!-- Header Section: Main Film Details -->
+    <div class="row">
+        <div class="col-md-4">
+            <!-- Movie Poster Placeholder -->
+            <div class="bg-secondary text-white d-flex align-items-center justify-content-center" style="height: 450px; border-radius: 10px;">
+                <span>Poster Placeholder</span>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <h1 class="display-4">@Model.Movie.Title (@Model.Movie.ReleaseDate.Year)</h1>
+            <p class="lead">Directed by <strong>@Model.Movie.Director</strong></p>
+
+            <div class="my-3">
+                <span class="badge bg-primary">@Model.Movie.Rating</span>
+                <span class="badge bg-info text-dark">@Model.Movie.Runtime mins</span>
+                <span class="badge bg-success">@Model.Movie.Language</span>
+            </div>
+
+            <h5>Synopsis</h5>
+            <p>@Model.Movie.Description</p>
+
+            <hr />
+
+            <div class="row mt-3">
+                <div class="col-6">
+                    <p><strong>Studio:</strong> @Model.Movie.Studio</p>
+                    <p><strong>Country:</strong> @Model.Movie.Country</p>
+                    <p><strong>Release Date:</strong> @Model.Movie.ReleaseDate.ToLongDateString()</p>
+                </div>
+                <div class="col-6">
+                    <p><strong>Budget:</strong> @Model.Movie.Budget.ToString("C0", System.Globalization.CultureInfo.GetCultureInfo("en-US"))</p>
+                    <p><strong>Box Office:</strong> @Model.Movie.Gross.ToString("C0", System.Globalization.CultureInfo.GetCultureInfo("en-US"))</p>
+                    <p><strong>Awards:</strong> @Model.Movie.Awards Win(s), @Model.Movie.Nominations Nomination(s)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr />
+
+    <!-- Cast Section: The Loop -->
+    <div class="mt-5">
+        <h2>Full Cast & Crew</h2>
+        <table class="table table-hover mt-3">
+            <thead class="table-dark">
+                <tr>
+                    <th>Actor Name</th>
+                    <th>Character</th>
+                    <th>Gender</th>
+                    <th>Birth Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Movie.Actors != null && Model.Movie.Actors.Any())
+                {
+                    foreach (var actor in Model.Movie.Actors)
+                    {
+                        <tr>
+                            <td>
+                                <strong>@actor.Name</strong>
+                            </td>
+                            <td class="text-muted">@actor.Character</td>
+                            <td>@actor.Gender</td>
+                            <td>@actor.Birthdate.ToShortDateString()</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="4" class="text-center text-muted italic">No cast members found for this film.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

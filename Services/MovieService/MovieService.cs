@@ -23,5 +23,15 @@ namespace AspGodPractice.Services.MovieService
                 PageHeader = "All Movies"
             };
         }
+
+        public MovieDetailsViewModel GetMovieDetailsById(int id)
+        {
+            Movie movie = _movieRepository.GetFilmDetailsById(id);
+            return new MovieDetailsViewModel
+            {
+                Movie = movie,
+                PageHeader = "Movie Details"
+            };
+        }
     }
 }

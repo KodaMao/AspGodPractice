@@ -7,5 +7,6 @@ namespace AspGodPractice.Services.MovieService
     public interface IMovieService
     {
         MoviesViewModel GetAllMovies();
+        MovieDetailsViewModel GetMovieDetailsById(int id);
     }
 }

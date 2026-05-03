@@ -34,7 +34,10 @@
                                 {
                                     <tr>
                                         <td title="@movie.Description">
-                                            <strong>@movie.Title</strong><br />
+                                            <a href="@Url.Action("Details", "Movies", new { id = movie.Id })" style="text-decoration:none; color:inherit;">
+                                                <strong class="text-primary">@movie.Title</strong>
+                                            </a>
+                                            <br />
                                             <small class="text-muted">@movie.Studio | @movie.Language</small>
                                         </td>
                                         <td>@movie.Director</td>

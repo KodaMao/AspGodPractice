@@ -34,5 +34,35 @@ namespace AspGodPractice.Repositories.MovieRepository
 
             return movies;
         }
+
+        public Movie GetFilmDetailsById(int id)
+        {
+            Movie movie = null;
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("spGetFilmDetails", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@FilmID", id);
+                conn.Open();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        movie = SqlHelper.MapObject<Movie>(reader);
+
+                        movie.Actors = new List<Actor>();
+                        if (reader.NextResult())
+                        {
+                            while (reader.Read())
+                            {
+                                var actor = SqlHelper.MapObject<Actor>(reader);
+                                movie.Actors.Add(actor);
+                            }
+                        }
+                    }
+                }
+            }
+            return movie;
+        }
     }
 }

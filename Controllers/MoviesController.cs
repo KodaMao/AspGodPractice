@@ -27,5 +27,17 @@ namespace AspGodPractice.Controllers
             var moviesViewModel = _movieService.GetAllMovies();
             return View(moviesViewModel);
         }
+
+        public ActionResult Details(int id)
+        {
+            var movieDetailsViewModel = _movieService.GetMovieDetailsById(id);
+
+            if (movieDetailsViewModel == null|| movieDetailsViewModel.Movie == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(movieDetailsViewModel);
+        }
     }
 }

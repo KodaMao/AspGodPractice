@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+
 
 namespace AspGodPractice.Models
 {
@@ -13,10 +12,17 @@ namespace AspGodPractice.Models
         public DateTime ReleaseDate { get; set; }
         public string Language { get; set; }
         public int Runtime { get; set; }
+        public int Budget { get; set; }
+        public int Gross { get; set; }
         public string Rating { get; set; }
+        public int Nominations { get; set; }
         public int Awards { get; set; }
         public string Director { get; set; }
+        public DateTime DirectorBirthDay { get; set; }
+        public string DirectorGender { get; set; }
         public string Studio { get; set; }
         public string Country { get; set; }
+
+        public List<Actor> Actors { get; set; } = new List<Actor>();
     }
 }
