@@ -23,6 +23,6 @@ namespace AspGodPractice.Models
         public string Studio { get; set; }
         public string Country { get; set; }
 
-        public List<Actor> Actors { get; set; } = new List<Actor>();
+        public List<Actor> Actors { get; set; } = new List<Actor>();    
     }
 }

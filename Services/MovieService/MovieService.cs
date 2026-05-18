@@ -14,24 +14,16 @@ namespace AspGodPractice.Services.MovieService
             _movieRepository = movieRepository;
         }
 
-        public MoviesViewModel GetAllMovies()
+        public List<Movie> GetAllMovies()
         {
             List<Movie> allMovies = _movieRepository.GetAllFilms();
-            return new MoviesViewModel
-            {
-                Movies = allMovies,
-                PageHeader = "All Movies"
-            };
+            return allMovies;
         }
 
-        public MovieDetailsViewModel GetMovieDetailsById(int id)
+        public Movie GetMovieDetailsById(int id)
         {
             Movie movie = _movieRepository.GetFilmDetailsById(id);
-            return new MovieDetailsViewModel
-            {
-                Movie = movie,
-                PageHeader = "Movie Details"
-            };
+            return movie;
         }
     }
 }
