@@ -1,6 +1,5 @@
 ﻿using AspGodPractice.Models;
 using AspGodPractice.Repositories.MovieRepository;
-using AspGodPractice.ViewModels.Movies;
 using System.Collections.Generic;
 
 namespace AspGodPractice.Services.MovieService

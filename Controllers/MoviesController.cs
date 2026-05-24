@@ -1,11 +1,6 @@
-﻿using AspGodPractice.Models;
-using AspGodPractice.Repositories.MovieRepository;
+﻿using AspGodPractice.Repositories.MovieRepository;
 using AspGodPractice.Services.MovieService;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Web;
 using System.Web.Mvc;
 
 namespace AspGodPractice.Controllers
@@ -28,16 +23,11 @@ namespace AspGodPractice.Controllers
             return View(movies);
         }
 
-        public ActionResult Details(int id)
-        {
-            ViewBag.MovieId = id; // Pass the ID to the frontend so jQuery can read it
-            return View();
-        }
 
         // GET: Movie/GetFilmDetailsJson?id=5
         // This is the endpoint your jQuery AJAX call will hit
         [HttpGet]
-        public JsonResult GetFilmDetailsJson(int id)
+        public JsonResult GetMovieDetailsById(int id)
         {
             try
             {
@@ -56,7 +46,7 @@ namespace AspGodPractice.Controllers
         }
 
         [HttpGet]
-        public JsonResult GetMoviesJson()
+        public JsonResult GetAllMovies()
         {
             try
             {
