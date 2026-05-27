@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = "User List";
+}
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
+
+<div class="container" style="max-width: 800px; margin: 30px auto; font-family: Arial, sans-serif;">
+    <h2>Manage Users</h2>
+    <hr />
+
+    <table id="users-datatable" class="display" style="width:100%; margin-bottom: 20px;">
+        <thead>
+            <tr>
+                <th>User ID</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th style="width: 80px; text-align: center;">Actions</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+    <script>
+    $(document).ready(function () {
+
+        var table = $('#users-datatable').DataTable({
+            "ajax": {
+                "url": '@Url.Action("GetAllUsers", "Users")',
+                "dataSrc": ""
+            },
+            "columns": [
+                { "data": "Id" },
+                { "data": "Username" },
+                { "data": "Email" },
+                {
+                    "data": null,
+                    "defaultContent": "", // Populated via createdRow
+                    "orderable": false,
+                    "searchable": false
+                }
+            ],
+            "pageLength": 5,
+
+            // Build out our redirection link dynamically for each row
+            "createdRow": function (row, data, dataIndex) {
+                // data.Id is the unique identifier for the user record
+
+                // Generate the base URL template using Razor, then replace the placeholder with real JS data
+                var baseRedirectUrl = '@Url.Action("Details", "Users", new { id = "PLACEHOLDER" })';
+                var finalUrl = baseRedirectUrl.replace('PLACEHOLDER', data.Id);
+
+                // Construct a clean, programmatic action link element
+                var $viewButton = $('<a>', {
+                    href: finalUrl,
+                    class: 'btn-view-user',
+                    text: 'View Profile',
+                    style: 'background-color: #007bff; color: white; padding: 5px 10px; text-decoration: none; border-radius: 4px; font-size: 13px; display: inline-block;'
+                });
+
+                // Target the last column index (td element index 3) and append the link
+                $(row).find('td:eq(3)').css('text-align', 'center').append($viewButton);
+            }
+        });
+    });
+    </script>
+}
