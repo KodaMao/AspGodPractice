@@ -103,6 +103,24 @@
         font-size: 12px;
         letter-spacing: 0.5px;
     }
+
+    .pagination > .active > a,
+    .pagination > .active > span,
+    .pagination > .active > a:hover,
+    .pagination > .active > span:hover,
+    .pagination > .active > a:focus,
+    .pagination > .active > span:focus {
+        background-color: #1e293b !important; /* Matches your modern dark header theme */
+        border-color: #1e293b !important;
+        color: #ffffff !important; /* Crisp white text for readability */
+        font-weight: 700;
+    }
+
+    /* Optional: Slight hover effect on the inactive page numbers */
+    .pagination > li > a:hover {
+        background-color: #f1f5f9 !important;
+        color: #1e293b !important;
+    }
 </style>
 
 <!-- ==========================================

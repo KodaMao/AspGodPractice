@@ -19,13 +19,10 @@ namespace AspGodPractice.Controllers
 
         public ActionResult Index()
         {
-            var movies = _movieService.GetAllMovies();
-            return View(movies);
+            return View();
         }
 
 
-        // GET: Movie/GetFilmDetailsJson?id=5
-        // This is the endpoint your jQuery AJAX call will hit
         [HttpGet]
         public JsonResult GetMovieDetailsById(int id)
         {
